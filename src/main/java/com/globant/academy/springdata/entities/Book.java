@@ -11,8 +11,8 @@ public class Book {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name="id",nullable = false, updatable = false,columnDefinition = "SERIAL")
-    private long id;
+    @Column(name="id",nullable = false, updatable = false)
+    private int id;
 
     @Column(name="title",nullable = false)
     private String title;
@@ -45,6 +45,14 @@ public class Book {
 
     public void setPublishedYear(int publishedYear) {
         this.publishedYear = publishedYear;
+    }
+
+    public List<Author> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(List<Author> authors) {
+        this.authors = authors;
     }
 
     @Override

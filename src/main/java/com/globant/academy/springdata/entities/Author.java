@@ -13,8 +13,8 @@ public class Author {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name="id",updatable = false,columnDefinition = "SERIAL")
-    private long id;
+    @Column(name="id",updatable = false)
+    private int id;
 
     @Column(name="full_name",nullable = false)
     private String fullName;
@@ -22,16 +22,8 @@ public class Author {
     @Column(name="country",nullable = false)
     private String country;
 
-    public List<Book> getBooks() {
-        return books;
-    }
-
-    public void setBooks(List<Book> books) {
-        this.books = books;
-    }
-
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "book_author", 
+    @JoinTable(name = "book_author",
             joinColumns = @JoinColumn(name = "book_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "author_id",
                     referencedColumnName = "id"))
@@ -59,6 +51,14 @@ public class Author {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 
     @Override

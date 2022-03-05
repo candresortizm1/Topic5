@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 @Controller
 @RequestMapping(path="/api/v1")
 public class MainController {
@@ -23,6 +25,7 @@ public class MainController {
     @PostMapping(path="authors")
     public @ResponseBody String addNewAuthor(@RequestBody Author autor){
         Author saved = authorRepository.save(autor);
+        autor.getBooks().stream().forEach(bookRepository::save);
         return saved.toString();
     }
 
